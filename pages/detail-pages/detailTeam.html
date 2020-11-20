@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <title>Detail Team</title>
+        <meta name="description" content="Football Apps" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <link rel="stylesheet" href="/css/materialize.min.css">
+        <link rel="stylesheet" href="/css/style.css">
+        <link rel="manifest" href="/manifest.json">
+        <meta name="theme-color" content="#26a69a" />
+        <link rel="apple-touch-icon" href="/icons/icon-192.png">
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    </head>
+
+    <body>
+        <!-- Navigasi -->
+        <nav class="green lighten-1" role="navigation">
+            <div class="nav-wrapper container">
+                <a href="#" class="brand-logo" id="logo-container">Team</a>
+                <a href="javascript:back()" class="sidenav-trigger" data-target="nav-mobile">
+                    <i class="material-icons">arrow_back</i>
+                </a>
+                <ul class="topnav right hide-on-med-and-down"></ul>
+                <ul class="sidenav" id="nav-mobile"></ul>
+            </div>
+        </nav>
+        <!-- Akhir Navigasi -->
+
+        <!-- Content -->
+        <div class="container">
+            <div class="row">
+                <div class="col s12 m12 l12">
+                    <div class="center-align" style="margin-top: 10px;">
+                        <img id="crestUrl" width="150" height="150">
+                        <h4 id="nameHeader"></h4>
+                    </div>
+                    <div class="card">
+                        <div class="card-tabs">
+                            <ul class="tabs">
+                                <li class="tab col s6 m6 l6"> <a class="active" href="#overview"> Overview </a> </li>
+                                <li class="tab col s6 m6 l6"> <a href="#squad"> Squad </a> </li>
+                            </ul>
+                        </div>
+
+                        <div class="card-content">
+                            <div class="center-align" id="preloader">
+                                <div class="preloader-wrapper big active">
+                                    <div class="spinner-layer spinner-blue">
+                                        <div class="circle-clipper left">
+                                            <div class="circle"></div>
+                                        </div><div class="gap-patch">
+                                            <div class="circle"></div>
+                                        </div><div class="circle-clipper right">
+                                            <div class="circle"></div>
+                                        </div>
+                                    </div>
+                              
+                                    <div class="spinner-layer spinner-red">
+                                        <div class="circle-clipper left">
+                                            <div class="circle"></div>
+                                        </div><div class="gap-patch">
+                                            <div class="circle"></div>
+                                        </div><div class="circle-clipper right">
+                                            <div class="circle"></div>
+                                        </div>
+                                    </div>
+                              
+                                    <div class="spinner-layer spinner-yellow">
+                                        <div class="circle-clipper left">
+                                            <div class="circle"></div>
+                                        </div><div class="gap-patch">
+                                            <div class="circle"></div>
+                                        </div><div class="circle-clipper right">
+                                            <div class="circle"></div>
+                                        </div>
+                                    </div>
+                              
+                                    <div class="spinner-layer spinner-green">
+                                        <div class="circle-clipper left">
+                                            <div class="circle"></div>
+                                        </div><div class="gap-patch">
+                                            <div class="circle"></div>
+                                        </div><div class="circle-clipper right">
+                                            <div class="circle"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div id="overview">
+                                <table class="highlight">
+                                    <thead></thead>
+                                    <tbody id="tableOverview"></tbody>
+                                </table>
+                            </div>
+
+                            <div id="squad">
+                                <table class="striped">
+                                    <thead>
+                                        <tr>
+                                            <th class="center-align">Number</th>
+                                            <th class="center-align">Player Name</th>
+                                            <th class="center-align">Position</th>
+                                            <th class="center-align">Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="tableSquad"></tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Akhir Content -->
+
+        <!-- FAB -->
+        <div class="fixed-action-btn">
+            <a class="btn-floating btn-large red" id="fabFavorite">
+                <i class="large material-icons">favorite_border</i>
+            </a>
+        </div>
+        
+        <!-- Akhir FAB -->
+        <footer class="page-footer green lighten-1 white-text center">
+            <div class="container">
+                Abu Ahza Corporation. Copyright : 2020
+            </div>
+        </footer>
+
+        <!-- Some Scripts -->
+        <script type="text/javascript" src="https://unpkg.com/snarkdown@1.0.2/dist/snarkdown.umd.js"></script>
+        <script src="/js/materialize.min.js"></script>
+        <script src="/js/api.js"></script>
+        <script src="/js/idb.js"></script>
+        <script src="/js/db.js"></script>
+
+        <script src="/js/script.js"></script>
+      
+
+        <script src="/js/standings.js"></script>
+        <script src="/js/matches.js"></script>
+        <script src="/js/teams.js"></script>
+
+        <script>
+            document.addEventListener("DOMContentLoaded", function() {
+                var urlParams = new URLSearchParams(window.location.search);
+                var teamID = Number(urlParams.get("id"));
+                var isFromSaved = urlParams.get("saved");
+
+                var btnFav = document.getElementById("fabFavorite");
+                var btnDel = document.getElementById("fabDelete");
+                
+                if (isFromSaved) {
+                    btnFav.style.display = "none";
+                    getFavoriteById(teamID, "team");
+                } else {
+                    var item = getTeamDetail(teamID);
+                }
+
+                btnFav.onclick = function() {
+                    item.then(function(team) {
+                        addToFavorite(team, "favorite_team");
+                        
+                    });
+                    btnFav.style.visibility="hidden";
+                };
+            });
+        </script>
+
+        <script type = "text/javascript" src = "https://code.jquery.com/jquery-2.1.1.min.js"></script>      
+        <script src = "https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.3/js/materialize.min.js"></script>
+        <!-- Akhir Some Scripts -->
+    </body>
+</html>

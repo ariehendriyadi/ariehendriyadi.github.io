@@ -1,0 +1,40 @@
+
+
+{"publicKey":"BEIFxdrbBqQBPzfNulKP6GojjVLHotKs8wweEfg1BGVDFAO16BBRnb2zWv-twykppEk6u0sYLDLamOWD5E7KF20",
+"privateKey":"lsrt21jVVH75pg90JIedfNp4aYtrRBLKFzl1zE6-8Yw"}
+
+<script type = "text/javascript" src = "https://code.jquery.com/jquery-2.1.1.min.js"></script>           
+        <script src = "https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.3/js/materialize.min.js"></script> 
+
+        <script type = "text/javascript" src = "https://code.jquery.com/jquery-2.1.1.min.js"></script>      
+        <script src = "https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.3/js/materialize.min.js"></script>
+
+        var pushSubscription = {
+    "endpoint": "https://fcm.googleapis.com/fcm/send/evYWoYe9lOM:APA91bHOUfAIomun7-gbbcSTF68eBH2YwtLLIooLGltgeVJdzs-SUrHHcImQKFCjJlCzMJ8O4wtMz3cu6vrWsySgiSS_TQ8q3ED2wPEDmvnvVNVBMMzbBfBU32QdZOX7CMEkIb1qx3gI",
+    "keys": {
+        "p256dh": "BLZCu0EBjd+u5KInvjWrkkK2QYndqhO1XS+PaBA0WXc9pn/yNnY/9qZGzQsMJZ5dIZEx8OYtyjvuGsdVr8wnNDI=",
+        "auth": "8nTH0hmEjs4SNBjdKleG5Q=="
+    }
+};
+
+var pushSubscription = {
+    "endpoint": "https://fcm.googleapis.com/fcm/send/e6HbkvfiE0c:APA91bEj_lRisM3_hRNoiIPYza95sew6d_mFghxDHk3BVNun2gd7ocPcHJtAua5TXZ9yLFCxBRyJWpC4bZnOyPiJAp6ZnNIae3Lld2XvjfgW3wDFzUPQBJfHn5oIdIBq4fI68fQn66un",
+    "keys": {
+        "p256dh": "BDrWs2JR2J8yPOPblQX2BXo0mVNEk4Rkm1TBW/ADEWCYOOPtOS7siw5tBYbXGe41YvGowtp6OtSgWzpAb8JIEpU=",
+        "auth": "bC6HjkT7MdPAeAnxMvjx3w=="
+    }
+
+    footer {
+	padding:20px 0;
+	bottom:0px;
+	width:100%;
+}
+
+div.body-content.container{
+	min-height:100vh;
+}
+};
+
+if (("PushManager") in window) {
+                navigator.serviceWorker.getRegistration().then(function(registration) {
+                    registration.pushManager.subscribe({
